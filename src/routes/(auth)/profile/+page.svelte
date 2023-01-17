@@ -7,12 +7,9 @@
 
 <h1 class="text-3xl font-bold">Profile</h1>
 
-<!-- <pre>{JSON.stringify(data, null, 2)}</pre> -->
 {#if !data.user.nasin.length}
-	You don't have any nasin yet! <a
-		href="/create"
-		class="text-blue-500 hocus:text-blue-600">Create one</a
-	>!
+	You don't have any nasin yet!
+	<a href="/create" class="text-blue-500 hocus:text-blue-600">Create one</a>!
 {/if}
 
 <button
