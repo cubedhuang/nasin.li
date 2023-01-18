@@ -14,7 +14,7 @@
 
 <nav class="px-8 bg-slate-800 shadow-lg">
 	<ul
-		class="max-w-5xl mx-auto py-4 flex items-center justify-between gap-4 font-bold text-white text-lg"
+		class="max-w-3xl mx-auto py-4 flex items-center justify-between gap-4 font-bold text-white text-lg"
 	>
 		<li>
 			<a href="/">nasin.li</a>
@@ -40,7 +40,7 @@
 </nav>
 
 <div class="px-8 py-8">
-	<div class="max-w-5xl mx-auto">
+	<div class="max-w-3xl mx-auto">
 		<slot />
 	</div>
 </div>
