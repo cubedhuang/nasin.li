@@ -1,6 +1,7 @@
-import { prisma } from '$lib/db';
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
+
+import { prisma } from '$lib/db';
 
 export const load = (async ({ parent }) => {
 	const { session } = await parent();
@@ -14,7 +15,8 @@ export const load = (async ({ parent }) => {
 			email: session.user.email
 		},
 		include: {
-			nasin: true
+			nasin: true,
+			accounts: true
 		}
 	});
 

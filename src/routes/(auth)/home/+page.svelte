@@ -5,16 +5,29 @@
 	export let data: PageData;
 </script>
 
-<h1 class="text-3xl font-bold">Profile</h1>
+<h1 class="mt-8 text-2xl font-bold">Linked Account</h1>
 
-{#if !data.user.nasin.length}
-	You don't have any nasin yet!
-	<a href="/create" class="text-blue-500 hocus:text-blue-600">Create one</a>!
-{/if}
+<div class="mt-2 p-4 flex items-center rounded-lg bg-[#2f3136] text-white ">
+	{#if data.discordUser.avatar}
+		<img
+			src="https://cdn.discordapp.com/avatars/{data.discordUser.id}/{data
+				.discordUser.avatar}.png"
+			alt="avatar"
+			class="w-16 h-16 rounded-full mr-4"
+		/>
+	{/if}
+
+	<div>
+		<h2 class="font-bold">Discord</h2>
+		{data.discordUser.username}<span class="opacity-80"
+			>#{data.discordUser.discriminator}</span
+		>
+	</div>
+</div>
 
 <button
 	on:click={() => signOut()}
-	class="mt-4 flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg"
+	class="mt-8 flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg"
 >
 	<svg
 		xmlns="http://www.w3.org/2000/svg"

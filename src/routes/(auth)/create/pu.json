@@ -1,0 +1,740 @@
+[
+	{
+		"nimi": "a",
+		"type": ["PARTICLE"],
+		"definition": "(emphasis, emotion or confirmation)",
+		"commentary": null
+	},
+	{
+		"nimi": "akesi",
+		"type": ["CONTENT"],
+		"definition": "reptile, amphibian",
+		"commentary": null
+	},
+	{
+		"nimi": "ala",
+		"type": ["PARTICLE", "CONTENT"],
+		"definition": "no, not, zero",
+		"commentary": null
+	},
+	{
+		"nimi": "alasa",
+		"type": ["CONTENT"],
+		"definition": "to hunt, forage",
+		"commentary": null
+	},
+	{
+		"nimi": "ale",
+		"type": ["CONTENT", "NUMBER"],
+		"definition": "all; abundant, countless, bountiful, every, plentiful; abundance, everything, life, universe; 100",
+		"commentary": null
+	},
+	{
+		"nimi": "anpa",
+		"type": ["CONTENT"],
+		"definition": "bowing down, downward, humble, lowly, dependent",
+		"commentary": null
+	},
+	{
+		"nimi": "ante",
+		"type": ["CONTENT"],
+		"definition": "different, altered, changed, other",
+		"commentary": null
+	},
+	{
+		"nimi": "anu",
+		"type": ["PARTICLE"],
+		"definition": "or",
+		"commentary": null
+	},
+	{
+		"nimi": "awen",
+		"type": ["CONTENT", "PREVERB"],
+		"definition": "enduring, kept, protected, safe, waiting, staying; to continue to",
+		"commentary": null
+	},
+	{
+		"nimi": "e",
+		"type": ["PARTICLE"],
+		"definition": "(before the direct object)",
+		"commentary": null
+	},
+	{
+		"nimi": "en",
+		"type": ["PARTICLE"],
+		"definition": "(between multiple subjects)",
+		"commentary": null
+	},
+	{
+		"nimi": "esun",
+		"type": ["CONTENT"],
+		"definition": "market, shop, fair, bazaar, business transaction",
+		"commentary": null
+	},
+	{
+		"nimi": "ijo",
+		"type": ["CONTENT"],
+		"definition": "thing, phenomenon, object, matter",
+		"commentary": null
+	},
+	{
+		"nimi": "ike",
+		"type": ["CONTENT"],
+		"definition": "bad, negative; non-essential, irrelevant",
+		"commentary": null
+	},
+	{
+		"nimi": "ilo",
+		"type": ["CONTENT"],
+		"definition": "tool, implement, machine, device",
+		"commentary": null
+	},
+	{
+		"nimi": "insa",
+		"type": ["CONTENT"],
+		"definition": "centre, content, inside, between; internal organ, stomach",
+		"commentary": null
+	},
+	{
+		"nimi": "jaki",
+		"type": ["CONTENT"],
+		"definition": "disgusting, obscene, sickly, toxic, unclean, unsanitary",
+		"commentary": null
+	},
+	{
+		"nimi": "jan",
+		"type": ["CONTENT"],
+		"definition": "human being, person, somebody",
+		"commentary": null
+	},
+	{
+		"nimi": "jelo",
+		"type": ["CONTENT"],
+		"definition": "yellow, yellowish",
+		"commentary": null
+	},
+	{
+		"nimi": "jo",
+		"type": ["CONTENT"],
+		"definition": "to have, carry, contain, hold",
+		"commentary": null
+	},
+	{
+		"nimi": "kala",
+		"type": ["CONTENT"],
+		"definition": "fish, marine animal, sea creature",
+		"commentary": null
+	},
+	{
+		"nimi": "kalama",
+		"type": ["CONTENT"],
+		"definition": "to produce a sound; recite, utter aloud",
+		"commentary": null
+	},
+	{
+		"nimi": "kama",
+		"type": ["CONTENT", "PREVERB"],
+		"definition": "arriving, coming, future, summoned; to become, manage to, succeed in",
+		"commentary": null
+	},
+	{
+		"nimi": "kasi",
+		"type": ["CONTENT"],
+		"definition": "plant, vegetation; herb, leaf",
+		"commentary": null
+	},
+	{
+		"nimi": "ken",
+		"type": ["CONTENT", "PREVERB"],
+		"definition": "to be able to, be allowed to, can, may; possible",
+		"commentary": null
+	},
+	{
+		"nimi": "kepeken",
+		"type": ["CONTENT", "PREPOSITION"],
+		"definition": "to use, with, by means of",
+		"commentary": null
+	},
+	{
+		"nimi": "kili",
+		"type": ["CONTENT"],
+		"definition": "fruit, vegetable, mushroom",
+		"commentary": null
+	},
+	{
+		"nimi": "kin",
+		"type": ["PARTICLE"],
+		"definition": "(emphasis, emotion or confirmation)",
+		"commentary": null
+	},
+	{
+		"nimi": "kiwen",
+		"type": ["CONTENT"],
+		"definition": "hard object, metal, rock, stone",
+		"commentary": null
+	},
+	{
+		"nimi": "ko",
+		"type": ["CONTENT"],
+		"definition": "clay, clinging form, dough, semi-solid, paste, powder",
+		"commentary": null
+	},
+	{
+		"nimi": "kon",
+		"type": ["CONTENT"],
+		"definition": "air, breath; essence, spirit, hidden reality, unseen agent",
+		"commentary": null
+	},
+	{
+		"nimi": "kule",
+		"type": ["CONTENT"],
+		"definition": "colourful, pigmented, painted",
+		"commentary": null
+	},
+	{
+		"nimi": "kulupu",
+		"type": ["CONTENT"],
+		"definition": "community, company, group, nation, society, tribe",
+		"commentary": null
+	},
+	{
+		"nimi": "kute",
+		"type": ["CONTENT"],
+		"definition": "ear; to hear, listen; pay attention to, obey",
+		"commentary": null
+	},
+	{
+		"nimi": "la",
+		"type": ["PARTICLE"],
+		"definition": "(between the context phrase and the main sentence)",
+		"commentary": null
+	},
+	{
+		"nimi": "lape",
+		"type": ["CONTENT"],
+		"definition": "sleeping, resting",
+		"commentary": null
+	},
+	{
+		"nimi": "laso",
+		"type": ["CONTENT"],
+		"definition": "blue, green",
+		"commentary": null
+	},
+	{
+		"nimi": "lawa",
+		"type": ["CONTENT"],
+		"definition": "head, mind; to control, direct, guide, lead, own, plan, regulate, rule",
+		"commentary": null
+	},
+	{
+		"nimi": "len",
+		"type": ["CONTENT"],
+		"definition": "cloth, clothing, fabric, textile; cover, layer of privacy",
+		"commentary": null
+	},
+	{
+		"nimi": "lete",
+		"type": ["CONTENT"],
+		"definition": "cold, cool; uncooked, raw",
+		"commentary": null
+	},
+	{
+		"nimi": "li",
+		"type": ["PARTICLE"],
+		"definition": "(between any subject except mi alone or sina alone and its verb; also to introduce a new verb for the same subject)",
+		"commentary": null
+	},
+	{
+		"nimi": "lili",
+		"type": ["CONTENT"],
+		"definition": "little, small, short; few; a bit; young",
+		"commentary": null
+	},
+	{
+		"nimi": "linja",
+		"type": ["CONTENT"],
+		"definition": "long and flexible thing; cord, hair, rope, thread, yarn",
+		"commentary": null
+	},
+	{
+		"nimi": "lipu",
+		"type": ["CONTENT"],
+		"definition": "flat object; book, document, card, paper, record, website",
+		"commentary": null
+	},
+	{
+		"nimi": "loje",
+		"type": ["CONTENT"],
+		"definition": "red, reddish",
+		"commentary": null
+	},
+	{
+		"nimi": "lon",
+		"type": ["CONTENT", "PREPOSITION"],
+		"definition": "located at, present at, real, true, existing",
+		"commentary": null
+	},
+	{
+		"nimi": "luka",
+		"type": ["CONTENT", "NUMBER"],
+		"definition": "arm, hand, tactile organ; five",
+		"commentary": null
+	},
+	{
+		"nimi": "lukin",
+		"type": ["CONTENT", "PREVERB"],
+		"definition": "eye; to look at, see, examine, observe, read, watch; to seek, look for, try to",
+		"commentary": null
+	},
+	{
+		"nimi": "lupa",
+		"type": ["CONTENT"],
+		"definition": "door, hole, orifice, window",
+		"commentary": null
+	},
+	{
+		"nimi": "ma",
+		"type": ["CONTENT"],
+		"definition": "earth, land; outdoors, world; country, territory; soil",
+		"commentary": null
+	},
+	{
+		"nimi": "mama",
+		"type": ["CONTENT"],
+		"definition": "parent, ancestor; creator, originator; caretaker, sustainer",
+		"commentary": null
+	},
+	{
+		"nimi": "mani",
+		"type": ["CONTENT"],
+		"definition": "money, cash, savings, wealth; large domesticated animal",
+		"commentary": null
+	},
+	{
+		"nimi": "meli",
+		"type": ["CONTENT"],
+		"definition": "woman, female, feminine person; wife",
+		"commentary": null
+	},
+	{
+		"nimi": "mi",
+		"type": ["CONTENT"],
+		"definition": "I, me, we, us",
+		"commentary": null
+	},
+	{
+		"nimi": "mije",
+		"type": ["CONTENT"],
+		"definition": "man, male, masculine person; husband",
+		"commentary": null
+	},
+	{
+		"nimi": "moku",
+		"type": ["CONTENT"],
+		"definition": "to eat, drink, consume, swallow, ingest",
+		"commentary": null
+	},
+	{
+		"nimi": "moli",
+		"type": ["CONTENT"],
+		"definition": "dead, dying",
+		"commentary": null
+	},
+	{
+		"nimi": "monsi",
+		"type": ["CONTENT"],
+		"definition": "back, behind, rear",
+		"commentary": null
+	},
+	{
+		"nimi": "mu",
+		"type": ["PARTICLE"],
+		"definition": "(animal noise or communication)",
+		"commentary": null
+	},
+	{
+		"nimi": "mun",
+		"type": ["CONTENT"],
+		"definition": "moon, night sky object, star",
+		"commentary": null
+	},
+	{
+		"nimi": "musi",
+		"type": ["CONTENT"],
+		"definition": "artistic, entertaining, frivolous, playful, recreational",
+		"commentary": null
+	},
+	{
+		"nimi": "mute",
+		"type": ["CONTENT"],
+		"definition": "many, a lot, more, much, several, very; quantity",
+		"commentary": null
+	},
+	{
+		"nimi": "namako",
+		"type": ["CONTENT"],
+		"definition": "new, fresh; additional, another, extra",
+		"commentary": null
+	},
+	{
+		"nimi": "nanpa",
+		"type": ["PARTICLE", "CONTENT"],
+		"definition": "-th (ordinal number); numbers",
+		"commentary": null
+	},
+	{
+		"nimi": "nasa",
+		"type": ["CONTENT"],
+		"definition": "unusual, strange; silly; drunk, intoxicated",
+		"commentary": null
+	},
+	{
+		"nimi": "nasin",
+		"type": ["CONTENT"],
+		"definition": "way, custom, doctrine, method, path, road",
+		"commentary": null
+	},
+	{
+		"nimi": "nena",
+		"type": ["CONTENT"],
+		"definition": "bump, button, hill, mountain, nose, protuberance",
+		"commentary": null
+	},
+	{
+		"nimi": "ni",
+		"type": ["CONTENT"],
+		"definition": "that, this",
+		"commentary": null
+	},
+	{
+		"nimi": "nimi",
+		"type": ["CONTENT"],
+		"definition": "name, word",
+		"commentary": null
+	},
+	{
+		"nimi": "noka",
+		"type": ["CONTENT"],
+		"definition": "foot, leg, organ of locomotion; bottom, lower part",
+		"commentary": null
+	},
+	{
+		"nimi": "o",
+		"type": ["PARTICLE"],
+		"definition": "hey! O! (vocative or imperative)",
+		"commentary": null
+	},
+	{
+		"nimi": "oko",
+		"type": ["CONTENT", "PREVERB"],
+		"definition": "eye; to look at, see, examine, observe, read, watch; to seek, look for, try to",
+		"commentary": null
+	},
+	{
+		"nimi": "olin",
+		"type": ["CONTENT"],
+		"definition": "to love, have compassion for, respect, show affection to",
+		"commentary": null
+	},
+	{
+		"nimi": "ona",
+		"type": ["CONTENT"],
+		"definition": "he, she, it, they",
+		"commentary": null
+	},
+	{
+		"nimi": "open",
+		"type": ["CONTENT"],
+		"definition": "to begin, start; open; turn on",
+		"commentary": null
+	},
+	{
+		"nimi": "pakala",
+		"type": ["CONTENT"],
+		"definition": "botched, broken, damaged, harmed, messed up",
+		"commentary": null
+	},
+	{
+		"nimi": "pali",
+		"type": ["CONTENT"],
+		"definition": "to do, take action on, work on; build, make, prepare",
+		"commentary": null
+	},
+	{
+		"nimi": "palisa",
+		"type": ["CONTENT"],
+		"definition": "long hard thing; branch, rod, stick",
+		"commentary": null
+	},
+	{
+		"nimi": "pan",
+		"type": ["CONTENT"],
+		"definition": "cereal, grain; barley, corn, oat, rice, wheat; bread, pasta",
+		"commentary": null
+	},
+	{
+		"nimi": "pana",
+		"type": ["CONTENT"],
+		"definition": "to give, send, emit, provide, put, release",
+		"commentary": null
+	},
+	{
+		"nimi": "pi",
+		"type": ["PARTICLE"],
+		"definition": "of",
+		"commentary": null
+	},
+	{
+		"nimi": "pilin",
+		"type": ["CONTENT"],
+		"definition": "heart (physical or emotional); feeling (an emotion, a direct experience)",
+		"commentary": null
+	},
+	{
+		"nimi": "pimeja",
+		"type": ["CONTENT"],
+		"definition": "black, dark, unlit",
+		"commentary": null
+	},
+	{
+		"nimi": "pini",
+		"type": ["CONTENT"],
+		"definition": "ago, completed, ended, finished, past",
+		"commentary": null
+	},
+	{
+		"nimi": "pipi",
+		"type": ["CONTENT"],
+		"definition": "bug, insect, ant, spider",
+		"commentary": null
+	},
+	{
+		"nimi": "poka",
+		"type": ["CONTENT"],
+		"definition": "hip, side; next to, nearby, vicinity",
+		"commentary": null
+	},
+	{
+		"nimi": "poki",
+		"type": ["CONTENT"],
+		"definition": "container, bag, bowl, box, cup, cupboard, drawer, vessel",
+		"commentary": null
+	},
+	{
+		"nimi": "pona",
+		"type": ["CONTENT"],
+		"definition": "good, positive, useful; friendly, peaceful; simple",
+		"commentary": null
+	},
+	{
+		"nimi": "pu",
+		"type": ["CONTENT"],
+		"definition": "interacting with the official Toki Pona book",
+		"commentary": null
+	},
+	{
+		"nimi": "sama",
+		"type": ["CONTENT", "PREPOSITION"],
+		"definition": "same, similar; each other; sibling, peer, fellow; as, like",
+		"commentary": null
+	},
+	{
+		"nimi": "seli",
+		"type": ["CONTENT"],
+		"definition": "fire; cooking element, chemical reaction, heat source",
+		"commentary": null
+	},
+	{
+		"nimi": "selo",
+		"type": ["CONTENT"],
+		"definition": "outer form, outer layer; bark, peel, shell, skin; boundary",
+		"commentary": null
+	},
+	{
+		"nimi": "seme",
+		"type": ["PARTICLE"],
+		"definition": "what? which?",
+		"commentary": null
+	},
+	{
+		"nimi": "sewi",
+		"type": ["CONTENT"],
+		"definition": "area above, highest part, something elevated; awe-inspiring, divine, sacred, supernatural",
+		"commentary": null
+	},
+	{
+		"nimi": "sijelo",
+		"type": ["CONTENT"],
+		"definition": "body (of person or animal), physical state, torso",
+		"commentary": null
+	},
+	{
+		"nimi": "sike",
+		"type": ["CONTENT"],
+		"definition": "round or circular thing; ball, circle, cycle, sphere, wheel; of one year",
+		"commentary": null
+	},
+	{
+		"nimi": "sin",
+		"type": ["CONTENT"],
+		"definition": "new, fresh; additional, another, extra",
+		"commentary": null
+	},
+	{
+		"nimi": "sina",
+		"type": ["CONTENT"],
+		"definition": "you",
+		"commentary": null
+	},
+	{
+		"nimi": "sinpin",
+		"type": ["CONTENT"],
+		"definition": "face, foremost, front, wall",
+		"commentary": null
+	},
+	{
+		"nimi": "sitelen",
+		"type": ["CONTENT"],
+		"definition": "image, picture, representation, symbol, mark, writing",
+		"commentary": null
+	},
+	{
+		"nimi": "sona",
+		"type": ["CONTENT", "PREVERB"],
+		"definition": "to know, be skilled in, be wise about, have information on; to know how to",
+		"commentary": null
+	},
+	{
+		"nimi": "soweli",
+		"type": ["CONTENT"],
+		"definition": "animal, beast, land mammal",
+		"commentary": null
+	},
+	{
+		"nimi": "suli",
+		"type": ["CONTENT"],
+		"definition": "big, heavy, large, long, tall; important; adult",
+		"commentary": null
+	},
+	{
+		"nimi": "suno",
+		"type": ["CONTENT"],
+		"definition": "sun; light brightness, glow, radiance, shine; light source",
+		"commentary": null
+	},
+	{
+		"nimi": "supa",
+		"type": ["CONTENT"],
+		"definition": "horizontal surface, thing to put or rest something on",
+		"commentary": null
+	},
+	{
+		"nimi": "suwi",
+		"type": ["CONTENT"],
+		"definition": "sweet, fragrant; cute, innocent, adorable",
+		"commentary": null
+	},
+	{
+		"nimi": "tan",
+		"type": ["CONTENT", "PREPOSITION"],
+		"definition": "by, from, because of",
+		"commentary": null
+	},
+	{
+		"nimi": "taso",
+		"type": ["PARTICLE", "CONTENT"],
+		"definition": "but, however; only",
+		"commentary": null
+	},
+	{
+		"nimi": "tawa",
+		"type": ["CONTENT", "PREPOSITION"],
+		"definition": "going to, toward; for; from the perspective of; moving",
+		"commentary": null
+	},
+	{
+		"nimi": "telo",
+		"type": ["CONTENT"],
+		"definition": "water, liquid, fluid, wet substance; beverage",
+		"commentary": null
+	},
+	{
+		"nimi": "tenpo",
+		"type": ["CONTENT"],
+		"definition": "time, duration, moment, occasion, period, situation",
+		"commentary": null
+	},
+	{
+		"nimi": "toki",
+		"type": ["CONTENT"],
+		"definition": "to communicate, say, speak, say, talk, use language, think",
+		"commentary": null
+	},
+	{
+		"nimi": "tomo",
+		"type": ["CONTENT"],
+		"definition": "indoor space; building, home, house, room",
+		"commentary": null
+	},
+	{
+		"nimi": "tu",
+		"type": ["CONTENT", "NUMBER"],
+		"definition": "two",
+		"commentary": null
+	},
+	{
+		"nimi": "unpa",
+		"type": ["CONTENT"],
+		"definition": "to have sexual relations with",
+		"commentary": null
+	},
+	{
+		"nimi": "uta",
+		"type": ["CONTENT"],
+		"definition": "mouth, lips, oral cavity, jaw",
+		"commentary": null
+	},
+	{
+		"nimi": "utala",
+		"type": ["CONTENT"],
+		"definition": "to battle, challenge, compete against struggle against",
+		"commentary": null
+	},
+	{
+		"nimi": "walo",
+		"type": ["CONTENT"],
+		"definition": "white, whitish; light-coloured, pale",
+		"commentary": null
+	},
+	{
+		"nimi": "wan",
+		"type": ["CONTENT", "NUMBER"],
+		"definition": "unique, united; one",
+		"commentary": null
+	},
+	{
+		"nimi": "waso",
+		"type": ["CONTENT"],
+		"definition": "bird, flying creature, winged animal",
+		"commentary": null
+	},
+	{
+		"nimi": "wawa",
+		"type": ["CONTENT"],
+		"definition": "strong, powerful; confident, sure; energetic, intense",
+		"commentary": null
+	},
+	{
+		"nimi": "weka",
+		"type": ["CONTENT"],
+		"definition": "absent, away, ignored",
+		"commentary": null
+	},
+	{
+		"nimi": "wile",
+		"type": ["CONTENT", "PREVERB"],
+		"definition": "must, need, require, should, want, wish",
+		"commentary": null
+	}
+]

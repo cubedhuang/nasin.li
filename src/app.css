@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'Fairfax Pona HD';
+		src: url('fonts/FairfaxPonaHD.woff2') format('woff2'),
+			url('fonts/FairfaxPonaHD.woff') format('woff');
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	html {
+		scroll-padding-top: 4rem;
+		scroll-behavior: smooth;
+
+		--scrollbar-bg: #fff;
+		--scrollbar-thumb: #0004;
+		--scrollbar-thumb-hover: #0006;
+		--scrollbar-thumb-active: #0008;
+
+		scrollbar-width: thin;
+		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+	}
+
+	::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: var(--scrollbar-bg);
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: var(--scrollbar-thumb);
+		border-radius: 6px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background-color: var(--scrollbar-thumb-hover);
+	}
+
+	::-webkit-scrollbar-thumb:active {
+		background-color: var(--scrollbar-thumb-active);
+	}
+
+	html.dark {
+		--scrollbar-bg: #000;
+		--scrollbar-thumb: #fff4;
+		--scrollbar-thumb-hover: #fff6;
+		--scrollbar-thumb-active: #fff8;
+	}
+}
+
+@layer components {
+	.box {
+		@apply rounded-lg bg-gray-50 shadow border;
+	}
+}

@@ -46,7 +46,7 @@ model User {
     sessions      Session[]
 
     url   String? @unique
-    nasin Nasin[]
+    nasin Nasin?
 
     @@index([url])
 }
@@ -60,21 +60,42 @@ model VerificationToken {
 }
 
 model Nasin {
-    id          Int     @id @default(autoincrement())
-    name        String?
-    description String?
-    isDefault   Boolean @default(false)
-    nimi        Nimi[]
+    id         Int     @id @default(autoincrement())
+    name       String?
+    commentary String?
+    // details    NasinDetails[]
+    nimi       Nimi[]
 
     user   User   @relation(fields: [userId], references: [id])
-    userId String
+    userId String @unique
+
+    @@index([userId])
 }
 
-model Nimi {
-    id         Int    @id @default(autoincrement())
-    nimi       String
-    commentary String
+// model NasinDetails {
+//     nasin   Nasin @relation(fields: [nasinId], references: [id])
+//     nasinId Int   @unique
+// }
 
-    nasin   Nasin? @relation(fields: [nasinId], references: [id])
-    nasinId Int?
+model Nimi {
+    id         Int        @id @default(autoincrement())
+    order      Int
+    nimi       String
+    type       NimiType[]
+    definition String
+    commentary String?
+
+    nasin   Nasin @relation(fields: [nasinId], references: [id])
+    nasinId Int
+
+    @@unique([nimi, nasinId])
+}
+
+enum NimiType {
+    PARTICLE
+    CONTENT
+    PREPOSITION
+    PREVERB
+    NUMBER
+    OTHER
 }

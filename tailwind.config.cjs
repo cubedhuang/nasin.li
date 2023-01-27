@@ -7,11 +7,21 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
+				pona: [
+					'"Fairfax Pona HD"',
+					'Inter',
+					...defaultTheme.fontFamily.sans
+				],
 				sans: ['Inter', ...defaultTheme.fontFamily.sans]
 			}
 		}
 	},
 	plugins: [
-		plugin(({ addVariant }) => addVariant('hocus', '&:hover, &:focus'))
+		require('@tailwindcss/forms'),
+		require('@tailwindcss/typography'),
+		plugin(({ addVariant }) => {
+			addVariant('hocus', ['&:hover', '&:focus']);
+			addVariant('peer-hocus', ['.peer:hover ~ &', '.peer:focus ~ &']);
+		})
 	]
 };
