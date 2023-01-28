@@ -60,10 +60,10 @@ model VerificationToken {
 }
 
 model Nasin {
-    id         Int     @id @default(autoincrement())
+    id         Int            @id @default(autoincrement())
     name       String?
-    commentary String?
-    // details    NasinDetails[]
+    commentary String
+    details    NasinDetails[]
     nimi       Nimi[]
 
     user   User   @relation(fields: [userId], references: [id])
@@ -72,14 +72,24 @@ model Nasin {
     @@index([userId])
 }
 
-// model NasinDetails {
-//     nasin   Nasin @relation(fields: [nasinId], references: [id])
-//     nasinId Int   @unique
-// }
+model NasinDetails {
+    id    Int @id @default(autoincrement())
+    order Int
+
+    title   String
+    content String
+
+    nasin   Nasin @relation(fields: [nasinId], references: [id])
+    nasinId Int
+
+    @@unique([title, nasinId])
+    @@index([nasinId])
+}
 
 model Nimi {
-    id         Int        @id @default(autoincrement())
-    order      Int
+    id    Int @id @default(autoincrement())
+    order Int
+
     nimi       String
     type       NimiType[]
     definition String

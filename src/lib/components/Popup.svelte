@@ -20,13 +20,13 @@
 
 {#if value}
 	<div
-		class="z-20 fixed bottom-0 right-0 w-full"
+		class="z-50 fixed bottom-0 right-0 w-full"
 		transition:fly|local={{ y: 24, duration: 300 }}
 	>
 		{#key key(value)}
 			<div
 				transition:fly|local={{ y: 24, duration: 300 }}
-				class="absolute bottom-0 right-0 left-0 max-h-[75vh] p-4 overflow-y-auto bg-gray-50 border-t shadow-lg
+				class="absolute bottom-0 right-0 left-0 max-h-[75vh] p-4 overflow-y-auto bg-gray-50 border-t shadow-xl
 					md:bottom-4 md:right-4 md:left-auto md:top-auto md:w-[36rem] md:max-h-[40rem] md:box"
 			>
 				<slot value={nonNullValue} />

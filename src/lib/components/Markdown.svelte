@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
-	import { createMarkdown } from 'safe-marked/module/browser';
-	import { Renderer } from 'marked';
+	import { marked, Renderer } from 'marked';
+	import { filterXSS } from 'xss';
 
 	const renderer = new Renderer();
 	const renderCode = renderer.code.bind(renderer);
@@ -12,13 +12,14 @@
 		return renderCode(code, language, isEscaped);
 	};
 
-	const markdown = createMarkdown({
-		marked: {
-			smartypants: true,
-			gfm: true,
-			renderer
-		}
-	});
+	const markdown = (source: string) =>
+		filterXSS(
+			marked.parse(source, {
+				smartypants: true,
+				gfm: true,
+				renderer
+			})
+		);
 </script>
 
 <script lang="ts">

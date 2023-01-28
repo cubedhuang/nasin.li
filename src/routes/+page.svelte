@@ -6,10 +6,13 @@
 </script>
 
 <Container>
-	<h1 class="text-3xl font-bold">nasin.li</h1>
+	<h1 class="mt-12 text-3xl font-bold">nasin.li</h1>
 
 	{#if data.session}
-		<a href="/home" class="flex items-center gap-2">
+		<a
+			href="/home"
+			class="flex items-center gap-2 text-blue-600 hocus:text-blue-400 transition-colors"
+		>
 			{#if data.session.user?.image}
 				<img
 					src={data.session.user.image}
@@ -20,12 +23,17 @@
 			{data.session.user?.name ?? 'User'}
 		</a>
 	{:else}
-		<a href="/login">Log In</a>
+		<a
+			href="/login"
+			class="text-blue-600 hocus:text-blue-400 transition-colors"
+		>
+			Log In
+		</a>
 	{/if}
 
-	<p>
-		Nothing is like implemented yet but you can check out the editor if u
-		want
+	<p class="mt-4 p-4 box">
+		The basic functionality is up and running, but there's still a lot to
+		do. Updates will be coming within the next few days!
 	</p>
 
 	<p class="mt-4">
