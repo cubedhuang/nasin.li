@@ -17,7 +17,7 @@
 				<img
 					src={data.session.user.image}
 					alt="Profile"
-					class="w-6 h-6 rounded-lg"
+					class="w-6 h-6 rounded-full"
 				/>
 			{/if}
 			{data.session.user?.name ?? 'User'}
@@ -56,4 +56,24 @@
 		To start,
 		<a href="/login" class="text-blue-500 hocus:text-blue-600">log in</a>!
 	</p>
+
+	<h2 class="mt-8 text-2xl font-bold">Some People</h2>
+
+	<div class="mt-4 flex flex-wrap gap-2">
+		{#each data.users as user}
+			<a
+				href="/@{user.url}"
+				class="p-2 flex gap-2 bg-blue-600 text-white rounded-lg hocus:bg-blue-500 transition-colors"
+			>
+				{#if user.image}
+					<img
+						src={user.image}
+						alt="Profile"
+						class="w-6 h-6 rounded-full"
+					/>
+				{/if}
+				{user.name}
+			</a>
+		{/each}
+	</div>
 </Container>

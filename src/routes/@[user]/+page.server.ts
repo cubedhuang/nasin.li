@@ -11,8 +11,12 @@ export const load = (async ({ params }) => {
 		include: {
 			nasin: {
 				include: {
-					nimi: true,
-					details: true
+					nimi: {
+						orderBy: { order: 'asc' }
+					},
+					details: {
+						orderBy: { order: 'asc' }
+					}
 				}
 			}
 		}
