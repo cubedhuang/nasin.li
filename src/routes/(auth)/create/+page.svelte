@@ -1,5 +1,11 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
+	import {
+		dndzone,
+		overrideItemIdKeyNameBeforeInitialisingDndZones
+	} from 'svelte-dnd-action';
+
+	overrideItemIdKeyNameBeforeInitialisingDndZones('key');
 
 	import { dev } from '$app/environment';
 	import { goto } from '$app/navigation';
@@ -367,7 +373,16 @@ this page supports **Markdown**!`;
 			</span>
 		</h2>
 
-		<div class="mt-2 grid md:grid-cols-2 gap-4">
+		<div
+			use:dndzone={{ items: words }}
+			on:consider={e => {
+				words = e.detail.items;
+			}}
+			on:finalize={e => {
+				words = e.detail.items;
+			}}
+			class="mt-2 grid md:grid-cols-2 gap-4"
+		>
 			{#each words as word (word.key)}
 				{@const parsed = nimiDataSchema.safeParse(word)}
 				{@const error = !parsed.success && parsed.error}
