@@ -84,7 +84,6 @@ this page supports **Markdown**!`;
 		error = null;
 
 		const nasinData = {
-			userId: data.user.id,
 			commentary,
 			details,
 			nimi: words
@@ -121,7 +120,7 @@ this page supports **Markdown**!`;
 
 <svelte:window
 	on:beforeunload={e => {
-		if (!dev && stage === Stage.Working) {
+		if (!dev && !saved && stage === Stage.Working) {
 			e.preventDefault();
 			e.returnValue = '';
 		}

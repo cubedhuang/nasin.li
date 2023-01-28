@@ -24,7 +24,6 @@ export const nasinDetailsDataSchema = z.object({
 });
 
 export const nasinDataSchema = z.object({
-	userId: z.string().cuid(),
 	commentary: z.string().max(2000),
 	details: z
 		.array(nasinDetailsDataSchema)
@@ -51,7 +50,6 @@ export const userUrlSchema = z
 	});
 
 export const userDataSchema = z.object({
-	userId: z.string().cuid(),
 	name: z.string().min(1).max(100),
 	url: userUrlSchema
 });

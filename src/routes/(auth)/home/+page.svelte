@@ -23,7 +23,6 @@
 		error = null;
 
 		const userData = {
-			userId: data.user.id,
 			name,
 			url
 		};

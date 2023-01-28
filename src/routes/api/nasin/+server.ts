@@ -4,26 +4,32 @@ import { prisma } from '$lib/db';
 import { nasinDataSchema } from '$lib/validators';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ cookies, request }) => {
+export const POST = (async ({ locals, request }) => {
+	const session = await locals.getSession();
+
+	if (!session?.user?.email) {
+		throw error(401, 'Unauthorized');
+	}
+
 	const data = nasinDataSchema.parse(await request.json());
 
-	const sessionToken = cookies.get('next-auth.session-token');
-	const session = await prisma.session.findFirst({
-		where: { expires: { gte: new Date() }, sessionToken }
+	const user = await prisma.user.findUnique({
+		where: { email: session.user.email },
+		include: { nasin: true }
 	});
 
-	if (!sessionToken || !session || session.userId !== data.userId) {
-		throw error(401, 'Unauthorized');
+	if (!user) {
+		throw error(404, 'User not found');
 	}
 
 	const nasin = await prisma.$transaction(async tx => {
 		const nasin = await tx.nasin.upsert({
-			where: { userId: data.userId },
+			where: { userId: user.id },
 			update: {
 				commentary: data.commentary
 			},
 			create: {
-				userId: data.userId,
+				userId: user.id,
 				commentary: data.commentary
 			}
 		});
