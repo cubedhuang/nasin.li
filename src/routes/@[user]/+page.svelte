@@ -8,12 +8,11 @@
 
 	export let data: PageData;
 
-	let details = data.nasin.details.map(detail => {
-		return {
-			...detail,
-			open: false
-		};
-	});
+	$: nasin = data.user.nasin!;
+	$: details = nasin.details.map(detail => ({
+		...detail,
+		open: false
+	}));
 </script>
 
 <Container>
@@ -33,10 +32,25 @@
 		{/if}
 	</div>
 
+	{#if data.owner}
+		<div class="mt-8 p-4 box">
+			<p>This is you!</p>
+
+			<p class="mt-2 flex flex-wrap gap-2">
+				<a
+					href="/home"
+					class="inline-block px-4 py-2 rounded-lg bg-blue-600 text-white font-bold"
+				>
+					Edit Profile
+				</a>
+			</p>
+		</div>
+	{/if}
+
 	<h2 class="mt-8 text-2xl font-bold">sona</h2>
 
 	<div class="mt-4 box p-6">
-		<Markdown source={data.nasin.commentary} />
+		<Markdown source={nasin.commentary} />
 	</div>
 
 	{#each details as detail (detail.title)}
@@ -79,16 +93,16 @@
 		</div>
 	{/each}
 
-	{#if data.nasin.nimi.length}
+	{#if nasin.nimi.length}
 		<h2 class="mt-8 text-2xl font-bold">
 			nimi
 			<span class="text-sm font-normal text-gray-500">
-				({data.nasin.nimi.length})
+				({nasin.nimi.length})
 			</span>
 		</h2>
 
 		<div class="mt-4 grid md:grid-cols-2 gap-4">
-			{#each data.nasin.nimi as word (word.nimi)}
+			{#each nasin.nimi as word (word.nimi)}
 				<div class="p-4 box">
 					<h3 class="text-xl font-bold">{word.nimi}</h3>
 
