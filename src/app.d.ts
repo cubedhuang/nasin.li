@@ -10,4 +10,23 @@ declare global {
 	}
 }
 
+// https://github.com/isaacHagoel/svelte-dnd-action#typescript
+type Item = import('svelte-dnd-action').Item;
+type DndEvent<ItemType = Item> = import('svelte-dnd-action').DndEvent<ItemType>;
+declare global {
+	declare namespace svelte.JSX {
+		interface HTMLAttributes<T> {
+			onconsider?: (
+				event: CustomEvent<DndEvent<ItemType>> & {
+					target: EventTarget & T;
+				}
+			) => void;
+			onfinalize?: (
+				event: CustomEvent<DndEvent<ItemType>> & {
+					target: EventTarget & T;
+				}
+			) => void;
+		}
+	}
+}
 export {};

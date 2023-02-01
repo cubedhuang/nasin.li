@@ -78,31 +78,35 @@
 		</div>
 	{/each}
 
-	<h2 class="mt-8 text-2xl font-bold">
-		nimi
-		<span class="text-sm font-normal text-gray-500">
-			({data.nasin.nimi.length})
-		</span>
-	</h2>
+	{#if data.nasin.nimi.length}
+		<h2 class="mt-8 text-2xl font-bold">
+			nimi
+			<span class="text-sm font-normal text-gray-500">
+				({data.nasin.nimi.length})
+			</span>
+		</h2>
 
-	<div class="mt-2 grid md:grid-cols-2 gap-4">
-		{#each data.nasin.nimi as word (word.nimi)}
-			<div class="p-4 box">
-				<h3 class="text-xl font-bold">{word.nimi}</h3>
+		<div class="mt-4 grid md:grid-cols-2 gap-4">
+			{#each data.nasin.nimi as word (word.nimi)}
+				<div class="p-4 box">
+					<h3 class="text-xl font-bold">{word.nimi}</h3>
 
-				<p class="text-xs text-gray-500">
-					{word.type.length ? word.type.join(' · ') : 'UNSPECIFIED'}
-				</p>
+					<p class="text-xs text-gray-500">
+						{word.type.length
+							? word.type.join(' · ')
+							: 'UNSPECIFIED'}
+					</p>
 
-				<Markdown source={word.definition} class="mt-2" />
+					<Markdown source={word.definition} class="mt-2" />
 
-				{#if word.commentary}
-					<Markdown
-						source={word.commentary}
-						class="mt-2 border-l-4 border-gray-200 pl-4 prose-sm"
-					/>
-				{/if}
-			</div>
-		{/each}
-	</div>
+					{#if word.commentary}
+						<Markdown
+							source={word.commentary}
+							class="mt-2 border-l-4 border-gray-200 pl-4 prose-sm"
+						/>
+					{/if}
+				</div>
+			{/each}
+		</div>
+	{/if}
 </Container>

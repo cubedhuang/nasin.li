@@ -176,7 +176,7 @@ this page supports **Markdown**!`;
 			class="mt-8 px-8 py-4 flex items-center justify-between gap-4
 				rounded-lg bg-gradient-to-br from-blue-600 to-blue-700"
 		>
-			<a href="/home" class="text-white font-bold" data-sveltekit-reload>
+			<a href={data.nasin ? '/home' : '/'} class="text-white font-bold">
 				Cancel
 			</a>
 
@@ -373,15 +373,59 @@ this page supports **Markdown**!`;
 			</span>
 		</h2>
 
+		<p class="mt-2">Click and drag nimi to reorder them.</p>
+
+		<button
+			type="button"
+			class="mt-4 p-4 w-full box grid place-items-center hover:scale-[1.02] transition"
+			on:click={() => {
+				const newKey = key();
+				words = [
+					{
+						key: newKey,
+						nimi: nimiSin(),
+						type: ['CONTENT'],
+						definition: 'sona pi nimi ni',
+						commentary: null
+					},
+					...words
+				];
+				openWord = newKey;
+			}}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="currentColor"
+				class="w-6 h-6"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
+					clip-rule="evenodd"
+				/>
+			</svg>
+		</button>
+
 		<div
-			use:dndzone={{ items: words }}
+			use:dndzone={{
+				items: words,
+				dropTargetClasses: [
+					'outline-blue-600',
+					'outline-2',
+					'outline-offset-4',
+					'outline-dashed'
+				],
+				dropTargetStyle: {}
+			}}
 			on:consider={e => {
+				openWord = null;
 				words = e.detail.items;
 			}}
 			on:finalize={e => {
 				words = e.detail.items;
 			}}
-			class="mt-2 grid md:grid-cols-2 gap-4"
+			class="mt-4 grid md:grid-cols-2 gap-4"
 		>
 			{#each words as word (word.key)}
 				{@const parsed = nimiDataSchema.safeParse(word)}
@@ -424,38 +468,6 @@ this page supports **Markdown**!`;
 					{/if}
 				</button>
 			{/each}
-
-			<button
-				type="button"
-				class="p-4 box grid place-items-center hover:scale-[1.02] transition"
-				on:click={() => {
-					const newKey = key();
-					words = [
-						...words,
-						{
-							key: newKey,
-							nimi: nimiSin(),
-							type: ['CONTENT'],
-							definition: 'sona pi nimi ni',
-							commentary: null
-						}
-					];
-					openWord = newKey;
-				}}
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					fill="currentColor"
-					class="w-6 h-6"
-				>
-					<path
-						fill-rule="evenodd"
-						d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
-						clip-rule="evenodd"
-					/>
-				</svg>
-			</button>
 		</div>
 	</Container>
 {/if}

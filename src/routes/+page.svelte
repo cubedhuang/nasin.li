@@ -69,7 +69,7 @@
 					<img
 						src={user.image}
 						alt="Profile"
-						class="w-6 h-6 rounded-full"
+						class="w-6 h-6 rounded-full relative after:content-[''] after:absolute after:inset-0 after:bg-gray-200"
 					/>
 				{/if}
 				{user.name}
