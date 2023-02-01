@@ -55,7 +55,7 @@
 </script>
 
 <Container>
-	<h1 class="mt-12 text-2xl font-bold">Home</h1>
+	<h1 class="mt-12 text-3xl font-bold">Home</h1>
 
 	<p class="mt-4 flex flex-wrap gap-2">
 		<a

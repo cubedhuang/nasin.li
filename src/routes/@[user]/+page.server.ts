@@ -8,7 +8,10 @@ export const load = (async ({ params }) => {
 		where: {
 			url: params.user
 		},
-		include: {
+		select: {
+			name: true,
+			url: true,
+			image: true,
 			nasin: {
 				include: {
 					nimi: {

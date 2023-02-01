@@ -27,7 +27,8 @@
 			<img
 				src={data.user.image}
 				alt="avatar"
-				class="w-16 h-16 rounded-full shadow-lg"
+				class="w-16 h-16 rounded-full shadow-lg
+					relative after:absolute after:inset-0 after:bg-gray-200"
 			/>
 		{/if}
 	</div>
