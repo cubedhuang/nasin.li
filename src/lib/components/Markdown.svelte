@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	import { marked, Renderer } from 'marked';
-	import { filterXSS, whiteList, type IFilterXSSOptions } from 'xss';
+	import * as xss from 'xss';
 
 	const renderer = new Renderer();
 	const renderCode = renderer.code.bind(renderer);
@@ -18,9 +18,9 @@
 		renderer
 	};
 
-	const xssOptions: IFilterXSSOptions = {
-		allowList: {
-			...whiteList,
+	const filterXSS = new xss.FilterXSS({
+		whiteList: {
+			...xss.whiteList,
 			h1: ['id'],
 			h2: ['id'],
 			h3: ['id'],
@@ -29,10 +29,10 @@
 			h6: ['id'],
 			p: ['class']
 		}
-	};
+	});
 
 	const markdown = (source: string) =>
-		filterXSS(marked.parse(source, markedOptions), xssOptions);
+		filterXSS.process(marked.parse(source, markedOptions));
 </script>
 
 <script lang="ts">
