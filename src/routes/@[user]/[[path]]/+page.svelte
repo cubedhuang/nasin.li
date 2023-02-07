@@ -10,6 +10,8 @@
 
 	$: isDefaultPath = data.nasin.path === '';
 
+	$: pageName = isDefaultPath ? data.user.name : data.nasin.name;
+
 	$: details = data.nasin.details.map(detail => ({
 		...detail,
 		open: false
@@ -17,9 +19,7 @@
 
 	$: meta = {
 		title: data.user.name,
-		description: `lipu ni li nasin pi ${
-			isDefaultPath ? data.user.name : data.nasin.name
-		}!`,
+		description: `lipu ni li nasin pi ${pageName}!`,
 		image: data.user.image
 	};
 </script>
@@ -39,8 +39,10 @@
 <Container>
 	<div class="mt-12 flex items-center justify-between">
 		<div>
-			<h1 class="text-3xl font-bold">{data.user.name}</h1>
-			<h2 class="text-gray-500">@{data.user.url}</h2>
+			<h1 class="text-3xl font-bold">{pageName}</h1>
+			<h2 class="text-gray-500">
+				@{data.user.url}{isDefaultPath ? '' : `/${data.nasin.path}`}
+			</h2>
 		</div>
 
 		{#if data.user.image}
