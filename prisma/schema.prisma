@@ -46,7 +46,7 @@ model User {
     sessions      Session[]
 
     url   String? @unique
-    nasin Nasin?
+    nasin Nasin[]
 
     @@index([url])
 }
@@ -61,14 +61,17 @@ model VerificationToken {
 
 model Nasin {
     id         Int            @id @default(autoincrement())
-    name       String?
+    name       String         @default("nasin mi")
     commentary String
     details    NasinDetails[]
     nimi       Nimi[]
+    path       String         @default("")
 
     user   User   @relation(fields: [userId], references: [id])
-    userId String @unique
+    userId String
 
+    @@unique([name, userId])
+    @@unique([path, userId])
     @@index([userId])
 }
 

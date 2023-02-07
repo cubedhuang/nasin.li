@@ -11,6 +11,7 @@
 	import { goto } from '$app/navigation';
 	import type { PageData } from './$types';
 
+	import { defaultCommentary } from '$lib/consts';
 	import { NimiType } from '$lib/enums';
 	import { key, nimiSin } from '$lib/util';
 	import {
@@ -36,7 +37,7 @@
 		Working
 	}
 
-	let stage = data.nasin ? Stage.Working : Stage.Starting;
+	let stage = data.nasin?.length === 1 ? Stage.Working : Stage.Starting;
 
 	interface NasinDetailsData {
 		key: string;
@@ -53,27 +54,20 @@
 		commentary: string | null;
 	}
 
-	let commentary =
-		data.nasin?.commentary ??
-		`sina ken sitelen e nasin sina pi toki pona e sona nasa lon lipu ni.
+	let nasinName = data.nasin?.[0]?.name ?? 'nasin mi';
+	let nasinPath = data.nasin?.[0]?.path ?? '';
 
-sina ken kepeken **ilo Markdown** tawa lipu ni!
-
----
-
-you can write about the way you use toki pona or your understanding of toki pona here.
-
-this page supports **Markdown**!`;
+	let commentary = data.nasin?.[0]?.commentary ?? defaultCommentary;
 
 	let details: NasinDetailsData[] =
-		data.nasin?.details.map(d => ({
+		data.nasin?.[0]?.details.map(d => ({
 			...d,
 			key: key(),
 			open: false
 		})) ?? [];
 
 	let words: NimiData[] =
-		data.nasin?.nimi.map(n => ({
+		data.nasin?.[0]?.nimi.map(n => ({
 			...n,
 			key: `${n.id}`
 		})) ?? [];
@@ -90,6 +84,7 @@ this page supports **Markdown**!`;
 		error = null;
 
 		const nasinData = {
+			name: nasinName,
 			commentary,
 			details,
 			nimi: words
@@ -120,7 +115,7 @@ this page supports **Markdown**!`;
 
 		if (error) return;
 
-		goto(data.user.url ? `/@${data.user.url}` : '/home');
+		goto(data.user.url ? `/@${data.user.url}/${nasinPath}` : '/home');
 	}
 </script>
 
@@ -139,44 +134,82 @@ this page supports **Markdown**!`;
 			bg-gradient-to-br from-blue-700 to-blue-900 text-white"
 	>
 		<Container>
-			<h1 class="text-3xl font-bold">o pali e lipu pi nasin sina</h1>
+			{#if data.nasin?.length}
+				<h1 class="text-3xl font-bold">o pali e lipu pi nasin sina</h1>
 
-			<button
-				type="button"
-				on:click={() => {
-					stage = Stage.Working;
+				<ul class="mt-4">
+					{#each data.nasin as nasin}
+						<li class="mt-2">
+							<button
+								type="button"
+								on:click={() => {
+									stage = Stage.Working;
 
-					// @ts-expect-error starter is a valid NimiData[]
-					words = starter.map(n => ({
-						...n,
-						key: key()
-					}));
-				}}
-				class="block mt-4 px-4 py-2 rounded-lg bg-white text-black font-bold"
-			>
-				o open kepeken nasin pu!
-			</button>
+									nasinName = nasin.name;
+									nasinPath = nasin.path;
 
-			<button
-				type="button"
-				on:click={() => {
-					stage = Stage.Working;
-				}}
-				class="block mt-2 px-4 py-2 rounded-lg bg-white text-black font-bold"
-			>
-				o open sin!
-			</button>
+									details = nasin.details.map(d => ({
+										...d,
+										key: key(),
+										open: false
+									}));
+									words = nasin.nimi.map(n => ({
+										...n,
+										key: `${n.id}`
+									}));
+
+									commentary = nasin.commentary;
+								}}
+								class="block px-4 py-2 rounded-lg bg-white text-black font-bold"
+							>
+								{nasin.name ?? 'nasin wan'}
+							</button>
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<h1 class="text-3xl font-bold">o pali e lipu pi nasin sina</h1>
+
+				<button
+					type="button"
+					on:click={() => {
+						stage = Stage.Working;
+
+						// @ts-expect-error starter is a valid NimiData[]
+						words = starter.map(n => ({
+							...n,
+							key: key()
+						}));
+					}}
+					class="block mt-4 px-4 py-2 rounded-lg bg-white text-black font-bold"
+				>
+					o open kepeken nasin pu!
+				</button>
+
+				<button
+					type="button"
+					on:click={() => {
+						stage = Stage.Working;
+					}}
+					class="block mt-2 px-4 py-2 rounded-lg bg-white text-black font-bold"
+				>
+					o open sin!
+				</button>
+			{/if}
 		</Container>
 	</div>
 {:else if stage === Stage.Working}
 	<Container>
-		<h1 class="mt-12 text-3xl font-bold">nasin mi</h1>
+		<h1 class="mt-12 text-3xl font-bold">{nasinName}</h1>
 
 		<p
 			class="mt-8 px-8 py-4 flex items-center justify-between gap-4
 				rounded-lg bg-gradient-to-br from-blue-600 to-blue-700"
 		>
-			<a href={data.nasin ? '/home' : '/'} class="text-white font-bold">
+			<a
+				href={data.nasin?.length ? '/home' : '/'}
+				class="text-white font-bold"
+			>
 				Cancel
 			</a>
 

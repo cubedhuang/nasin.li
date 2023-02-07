@@ -1,5 +1,5 @@
 import { prisma } from '$lib/db';
-import type { Actions, PageServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
 export const load = (async ({ parent }) => {
 	const { user } = await parent();
@@ -9,8 +9,8 @@ export const load = (async ({ parent }) => {
 	}
 
 	return {
-		nasin: await prisma.nasin.findUnique({
-			where: { id: user.nasin.id },
+		nasin: await prisma.nasin.findMany({
+			where: { userId: user.id },
 			include: {
 				nimi: { orderBy: { order: 'asc' } },
 				details: { orderBy: { order: 'asc' } }

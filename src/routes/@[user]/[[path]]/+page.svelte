@@ -8,12 +8,33 @@
 
 	export let data: PageData;
 
-	$: nasin = data.user.nasin!;
-	$: details = nasin.details.map(detail => ({
+	$: isDefaultPath = data.nasin.path === '';
+
+	$: details = data.nasin.details.map(detail => ({
 		...detail,
 		open: false
 	}));
+
+	$: meta = {
+		title: data.user.name,
+		description: `lipu ni li nasin pi ${
+			isDefaultPath ? data.user.name : data.nasin.name
+		}!`,
+		image: data.user.image
+	};
 </script>
+
+<svelte:head>
+	<title>{meta.title}</title>
+	<meta property="og:title" content={meta.title} />
+
+	<meta name="description" content={meta.description} />
+	<meta property="og:description" content={meta.description} />
+
+	{#if meta.image}
+		<meta property="og:image" content={meta.image} />
+	{/if}
+</svelte:head>
 
 <Container>
 	<div class="mt-12 flex items-center justify-between">
@@ -34,7 +55,7 @@
 
 	{#if data.owner}
 		<div class="mt-8 p-4 box">
-			<p>This is you!</p>
+			<p>This is on your account!</p>
 
 			<p class="mt-2 flex flex-wrap gap-2">
 				<a
@@ -47,11 +68,39 @@
 		</div>
 	{/if}
 
-	<h2 class="mt-8 text-2xl font-bold">sona</h2>
+	{#if data.user.nasin.length > 1 && isDefaultPath}
+		<h2 class="mt-8 text-2xl font-bold">ijo kulupu</h2>
 
-	<div class="mt-4 box p-6">
-		<Markdown source={nasin.commentary} />
-	</div>
+		<div class="mt-4 flex flex-wrap">
+			{#each data.user.nasin as nasin (nasin.path)}
+				{#if nasin.path !== data.nasin.path}
+					<a
+						href="/@{data.user.url}/{nasin.path}"
+						class="box px-4 py-2 hover:shadow-lg transition"
+					>
+						<h3 class="text-lg font-bold">{nasin.name}</h3>
+					</a>
+				{/if}
+			{/each}
+		</div>
+	{:else if data.user.nasin.length > 1}
+		<h2 class="mt-8 text-2xl font-bold">kulupu</h2>
+
+		<a
+			href="/@{data.user.url}"
+			class="mt-4 inline-block box px-4 py-2 hover:shadow-lg transition"
+		>
+			<h3 class="text-lg font-bold">{data.user.name}</h3>
+		</a>
+	{/if}
+
+	{#if data.nasin.commentary}
+		<h2 class="mt-8 text-2xl font-bold">sona</h2>
+
+		<div class="mt-4 box p-6">
+			<Markdown source={data.nasin.commentary} />
+		</div>
+	{/if}
 
 	{#each details as detail (detail.title)}
 		<div class="mt-4 box p-6">
@@ -93,16 +142,16 @@
 		</div>
 	{/each}
 
-	{#if nasin.nimi.length}
+	{#if data.nasin.nimi.length}
 		<h2 class="mt-8 text-2xl font-bold">
 			nimi
 			<span class="text-sm font-normal text-gray-500">
-				({nasin.nimi.length})
+				({data.nasin.nimi.length})
 			</span>
 		</h2>
 
 		<div class="mt-4 grid md:grid-cols-2 gap-4">
-			{#each nasin.nimi as word (word.nimi)}
+			{#each data.nasin.nimi as word (word.nimi)}
 				<div class="p-4 box">
 					<h3 class="text-xl font-bold">{word.nimi}</h3>
 

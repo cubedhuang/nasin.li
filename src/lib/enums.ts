@@ -13,11 +13,11 @@ export const NimiType = {
 	OTHER: 'OTHER'
 } as const satisfies typeof NimiTypeOrigin;
 
-export const NimiTypes = Object.values(NimiType) satisfies NimiType[] as [
+export const NimiTypes = [
 	'PARTICLE',
 	'CONTENT',
 	'PREPOSITION',
 	'PREVERB',
 	'NUMBER',
 	'OTHER'
-];
+] as const;

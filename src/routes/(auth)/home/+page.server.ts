@@ -9,7 +9,7 @@ const client = new SnowTransfer(env.DISCORD_TOKEN);
 export const load = (async ({ parent }) => {
 	const { user } = await parent();
 
-	if (!user.nasin) {
+	if (!user.nasin?.length) {
 		throw redirect(302, '/create');
 	}
 

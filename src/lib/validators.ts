@@ -7,6 +7,14 @@ export function formatError(error: z.ZodError) {
 		.join('\n');
 }
 
+export const urlSchema = z
+	.string()
+	.min(3)
+	.max(50)
+	.regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
+		message: "user url must be 'kebab-case'"
+	});
+
 export const nimiDataSchema = z.object({
 	nimi: z.string().min(1).max(100),
 	type: z
@@ -24,6 +32,8 @@ export const nasinDetailsDataSchema = z.object({
 });
 
 export const nasinDataSchema = z.object({
+	id: z.number().int().positive().optional(),
+	name: z.string().min(1).max(100),
 	commentary: z.string().max(2000),
 	details: z
 		.array(nasinDetailsDataSchema)
@@ -38,18 +48,11 @@ export const nasinDataSchema = z.object({
 		.max(300)
 		.refine(nimi => new Set(nimi.map(n => n.nimi)).size === nimi.length, {
 			message: 'nimi must be unique'
-		})
+		}),
+	path: urlSchema.optional()
 });
-
-export const userUrlSchema = z
-	.string()
-	.min(3)
-	.max(50)
-	.regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
-		message: "user url must be 'kebab-case'"
-	});
 
 export const userDataSchema = z.object({
 	name: z.string().min(1).max(100),
-	url: userUrlSchema
+	url: urlSchema
 });

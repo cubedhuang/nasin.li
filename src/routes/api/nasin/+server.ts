@@ -1,7 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 
 import { prisma } from '$lib/db';
-import { nasinDataSchema } from '$lib/validators';
+import { formatError, nasinDataSchema } from '$lib/validators';
 import type { RequestHandler } from './$types';
 
 export const POST = (async ({ locals, request }) => {
@@ -11,7 +11,13 @@ export const POST = (async ({ locals, request }) => {
 		throw error(401, 'Unauthorized');
 	}
 
-	const data = nasinDataSchema.parse(await request.json());
+	const check = nasinDataSchema.safeParse(await request.json());
+
+	if (!check.success) {
+		throw error(400, formatError(check.error));
+	}
+
+	const data = check.data;
 
 	const user = await prisma.user.findUnique({
 		where: { email: session.user.email },
@@ -22,14 +28,39 @@ export const POST = (async ({ locals, request }) => {
 		throw error(404, 'User not found');
 	}
 
+	if (
+		data.id !== undefined &&
+		!user.nasin.some(nasin => nasin.id === data.id)
+	) {
+		throw error(403, 'Forbidden');
+	}
+
+	if (
+		data.id !== undefined &&
+		user.nasin.some(
+			nasin => nasin.name === data.name && nasin.id !== data.id
+		)
+	) {
+		throw error(409, 'Nasin with that name already exists');
+	}
+
 	const nasin = await prisma.$transaction(
 		async tx => {
 			const nasin = await tx.nasin.upsert({
-				where: { userId: user.id },
+				where: {
+					id: data.id,
+					name_userId: data.id
+						? undefined
+						: { name: data.name, userId: user.id }
+				},
 				update: {
+					name: data.name,
+					path: data.path,
 					commentary: data.commentary
 				},
 				create: {
+					name: data.name,
+					path: data.path,
 					userId: user.id,
 					commentary: data.commentary
 				}

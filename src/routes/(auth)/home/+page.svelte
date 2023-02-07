@@ -1,10 +1,16 @@
 <script lang="ts">
 	import { signOut } from '@auth/sveltekit/client';
+	import type { Nasin } from '@prisma/client';
 
 	import { goto } from '$app/navigation';
 	import type { PageData } from './$types';
 
-	import { formatError, userDataSchema } from '$lib/validators';
+	import { defaultCommentary } from '$lib/consts';
+	import {
+		formatError,
+		nasinDataSchema,
+		userDataSchema
+	} from '$lib/validators';
 
 	import Container from '$lib/components/Container.svelte';
 
@@ -13,14 +19,56 @@
 	let name = data.user.name ?? '';
 	let url = data.user.url ?? '';
 
-	let error: string | null = null;
-	let saved = false;
+	let userError: string | null = null;
+	let nasinError: string | null = null;
+	let savedUser = false;
+	let savedNasin = false;
 
-	async function save() {
-		if (saved) return;
+	async function saveNasin(nasin: Nasin) {
+		if (savedNasin) return;
 
-		saved = true;
-		error = null;
+		savedNasin = true;
+		nasinError = null;
+
+		const nasinData = {
+			name: nasin.name,
+			path: nasin.path,
+			commentary: defaultCommentary,
+			details: [],
+			nimi: []
+		};
+
+		const value = nasinDataSchema.safeParse(nasinData);
+
+		if (!value.success) {
+			savedNasin = false;
+			nasinError = formatError(value.error);
+			return;
+		}
+
+		const response = await fetch('/api/nasin', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(value.data)
+		});
+
+		if (!response.ok) {
+			const e = await response.json();
+
+			savedNasin = false;
+			nasinError = `${e?.message ?? e}` || 'Unknown error';
+
+			return;
+		}
+
+		goto(`/@${data.user.url}/${nasinData.path ?? ''}`);
+	}
+
+	async function saveUser() {
+		if (savedUser) return;
+
+		savedUser = true;
+		userError = null;
 
 		const userData = {
 			name,
@@ -30,8 +78,8 @@
 		const value = userDataSchema.safeParse(userData);
 
 		if (!value.success) {
-			saved = false;
-			error = formatError(value.error);
+			savedUser = false;
+			userError = formatError(value.error);
 			return;
 		}
 
@@ -44,8 +92,8 @@
 		if (!response.ok) {
 			const e = await response.json();
 
-			saved = false;
-			error = `${e?.message ?? e}` || 'Unknown error';
+			savedUser = false;
+			userError = `${e?.message ?? e}` || 'Unknown error';
 
 			return;
 		}
@@ -56,6 +104,8 @@
 
 <Container>
 	<h1 class="mt-12 text-3xl font-bold">Home</h1>
+
+	<h2 class="mt-8 text-2xl font-bold">My Nasin</h2>
 
 	<p class="mt-4 flex flex-wrap gap-2">
 		<a
@@ -70,7 +120,7 @@
 				href={`/@${data.user.url}`}
 				class="px-4 py-2 flex items-center gap-2 rounded-lg bg-blue-600 text-white font-bold"
 			>
-				View my Profile
+				View
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"
@@ -92,47 +142,130 @@
 		{/if}
 	</p>
 
-	<h1 class="mt-8 text-2xl font-bold">User Settings</h1>
+	<ul class="mt-4">
+		{#if nasinError}
+			<p class="mt-2 text-sm text-red-500 whitespace-pre-wrap">
+				{nasinError}
+			</p>
+		{/if}
 
-	<label>
-		<h2 class="mt-4 font-bold">Display Name</h2>
+		{#each data.user.nasin as nasin}
+			<li class="mt-2">
+				<div class="p-4 box">
+					<label>
+						<h3 class="font-bold">Nasin Name</h3>
 
-		<p class="mt-2 w-fit p-2 box flex items-baseline">
+						<input
+							type="text"
+							placeholder="url"
+							bind:value={nasin.name}
+							class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
+							spellcheck="false"
+						/>
+					</label>
+
+					<label>
+						<h3 class="font-bold mt-4">URL</h3>
+
+						<p class="flex items-baseline">
+							https://nasin.li/@{url}/
+							<input
+								type="text"
+								placeholder=""
+								bind:value={nasin.path}
+								class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
+								spellcheck="false"
+							/>
+						</p>
+					</label>
+
+					<button
+						type="button"
+						class="mt-4 block px-4 py-2 rounded-lg bg-blue-600 text-white font-bold
+							disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+						disabled={savedNasin}
+						on:click={() => saveNasin(nasin)}
+					>
+						Save
+					</button>
+				</div>
+			</li>
+		{/each}
+
+		<li>
+			<button
+				type="button"
+				class="mt-4 p-4 w-full box grid place-items-center hover:scale-[1.02] transition"
+				on:click={() => {
+					data.user.nasin = [
+						...data.user.nasin,
+						{
+							name: '',
+							path: '',
+							commentary: '',
+							id: 1,
+							userId: data.user.id
+						}
+					];
+				}}
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					class="w-6 h-6"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</button>
+		</li>
+	</ul>
+
+	<h2 class="mt-8 text-2xl font-bold">Account Settings</h2>
+
+	<div class="mt-4 p-4 box w-fit">
+		<label>
+			<h3 class="font-bold">Account Name</h3>
+
 			<input
 				type="text"
 				placeholder="url"
 				bind:value={name}
-				class="px-2 py-1 rounded-lg text-gray-900 border-transparent focus:ring-0 focus:border-blue-500 transition-colors"
+				class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
 				spellcheck="false"
 			/>
-		</p>
-	</label>
+		</label>
 
-	<label>
-		<h2 class="mt-4 font-bold">URL</h2>
+		<label>
+			<h3 class="font-bold mt-4">URL</h3>
 
-		<p class="mt-2 w-fit px-4 py-2 box flex items-baseline">
-			https://nasin.li/@
-			<input
-				type="text"
-				placeholder="url"
-				bind:value={url}
-				class="px-2 py-1 rounded-lg text-gray-900 border-transparent focus:ring-0 focus:border-blue-500 transition-colors"
-				spellcheck="false"
-			/>
-		</p>
-	</label>
+			<p class="flex items-baseline">
+				https://nasin.li/@
+				<input
+					type="text"
+					placeholder="url"
+					bind:value={url}
+					class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
+					spellcheck="false"
+				/>
+			</p>
+		</label>
+	</div>
 
-	{#if error}
-		<p class="mt-2 text-sm text-red-500 whitespace-pre-wrap">{error}</p>
+	{#if userError}
+		<p class="mt-2 text-sm text-red-500 whitespace-pre-wrap">{userError}</p>
 	{/if}
 
 	<button
 		type="button"
 		class="mt-4 px-4 py-2 rounded-lg bg-blue-600 text-white font-bold
 			disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
-		disabled={saved}
-		on:click={save}
+		disabled={savedUser}
+		on:click={saveUser}
 	>
 		Save
 	</button>

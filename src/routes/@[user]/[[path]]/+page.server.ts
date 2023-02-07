@@ -14,22 +14,35 @@ export const load = (async ({ params, parent }) => {
 			name: true,
 			url: true,
 			image: true,
-			nasin: {
-				include: {
-					nimi: {
-						orderBy: { order: 'asc' }
-					},
-					details: {
-						orderBy: { order: 'asc' }
-					}
-				}
-			}
+			nasin: true
 		}
 	});
 
-	if (!user?.nasin) {
-		throw error(404, 'User not found');
+	if (!user?.nasin?.length) {
+		throw error(404, 'Nasin not found');
 	}
+
+	console.log(user.nasin);
+
+	const exists = user.nasin.find(nasin => nasin.path === (params.path ?? ''));
+
+	if (!exists) {
+		throw error(404, 'Nasin not found');
+	}
+
+	const nasin = await prisma.nasin.findUnique({
+		where: {
+			id: exists.id
+		},
+		include: {
+			nimi: {
+				orderBy: { order: 'asc' }
+			},
+			details: {
+				orderBy: { order: 'asc' }
+			}
+		}
+	});
 
 	let owner = false;
 
@@ -48,5 +61,6 @@ export const load = (async ({ params, parent }) => {
 		}
 	}
 
-	return { user, owner };
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+	return { user, nasin: nasin!, owner };
 }) satisfies PageServerLoad;
