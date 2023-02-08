@@ -54,6 +54,7 @@
 		commentary: string | null;
 	}
 
+	let nasinId = data.nasin?.[0]?.id;
 	let nasinName = data.nasin?.[0]?.name ?? 'nasin mi';
 	let nasinPath = data.nasin?.[0]?.path ?? '';
 
@@ -84,7 +85,9 @@
 		error = null;
 
 		const nasinData = {
+			id: nasinId,
 			name: nasinName,
+			path: nasinPath,
 			commentary,
 			details,
 			nimi: words
@@ -145,6 +148,7 @@
 								on:click={() => {
 									stage = Stage.Working;
 
+									nasinId = nasin.id;
 									nasinName = nasin.name;
 									nasinPath = nasin.path;
 

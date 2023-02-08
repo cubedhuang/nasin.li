@@ -31,11 +31,13 @@
 		nasinError = null;
 
 		const nasinData = {
+			id: nasin.id || undefined,
 			name: nasin.name,
 			path: nasin.path,
-			commentary: defaultCommentary,
+			commentary: nasin.commentary ?? defaultCommentary,
 			details: [],
-			nimi: []
+			nimi: [],
+			patch: true
 		};
 
 		const value = nasinDataSchema.safeParse(nasinData);
@@ -62,6 +64,40 @@
 		}
 
 		goto(`/@${data.user.url}/${nasinData.path ?? ''}`);
+	}
+
+	async function deleteNasin(nasin: Nasin) {
+		if (savedNasin) return;
+
+		if (nasin.id === 0) {
+			data.user.nasin = data.user.nasin.filter(n => n.id !== 0);
+			return;
+		}
+
+		if (!confirm('Are you sure you want to delete this nasin?')) return;
+
+		savedNasin = true;
+		nasinError = null;
+
+		const response = await fetch('/api/nasin', {
+			method: 'DELETE',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ id: nasin.id })
+		});
+
+		if (!response.ok) {
+			const e = await response.json();
+
+			savedNasin = false;
+			nasinError = `${e?.message ?? e}` || 'Unknown error';
+
+			return;
+		}
+
+		data.user.nasin = data.user.nasin.filter(n => n.id !== nasin.id);
+
+		savedNasin = false;
+		nasinError = null;
 	}
 
 	async function saveUser() {
@@ -142,24 +178,24 @@
 		{/if}
 	</p>
 
-	<ul class="mt-4">
-		{#if nasinError}
-			<p class="mt-2 text-sm text-red-500 whitespace-pre-wrap">
-				{nasinError}
-			</p>
-		{/if}
+	{#if nasinError}
+		<p class="mt-2 text-sm text-red-500 whitespace-pre-wrap">
+			{nasinError}
+		</p>
+	{/if}
 
+	<ul class="mt-4 grid md:grid-cols-2 gap-4">
 		{#each data.user.nasin as nasin}
-			<li class="mt-2">
+			<li>
 				<div class="p-4 box">
 					<label>
 						<h3 class="font-bold">Nasin Name</h3>
 
 						<input
 							type="text"
-							placeholder="url"
+							placeholder="ijo ante..."
 							bind:value={nasin.name}
-							class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
+							class="w-full px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
 							spellcheck="false"
 						/>
 					</label>
@@ -171,23 +207,34 @@
 							https://nasin.li/@{url}/
 							<input
 								type="text"
-								placeholder=""
+								placeholder="ijo-ante"
 								bind:value={nasin.path}
-								class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
+								class="w-full px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
 								spellcheck="false"
 							/>
 						</p>
 					</label>
 
-					<button
-						type="button"
-						class="mt-4 block px-4 py-2 rounded-lg bg-blue-600 text-white font-bold
-							disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
-						disabled={savedNasin}
-						on:click={() => saveNasin(nasin)}
-					>
-						Save
-					</button>
+					<div class="mt-4 flex items-baseline justify-between">
+						<button
+							type="button"
+							class="px-4 py-2 rounded-lg bg-blue-600 text-white font-bold
+								disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+							disabled={savedNasin}
+							on:click={() => saveNasin(nasin)}
+						>
+							Save
+						</button>
+
+						<button
+							type="button"
+							class="text-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+							disabled={savedNasin}
+							on:click={() => deleteNasin(nasin)}
+						>
+							Delete
+						</button>
+					</div>
 				</div>
 			</li>
 		{/each}
@@ -195,7 +242,7 @@
 		<li>
 			<button
 				type="button"
-				class="mt-4 p-4 w-full box grid place-items-center hover:scale-[1.02] transition"
+				class="p-4 w-full box grid place-items-center hover:scale-[1.02] transition"
 				on:click={() => {
 					data.user.nasin = [
 						...data.user.nasin,
@@ -203,7 +250,7 @@
 							name: '',
 							path: '',
 							commentary: '',
-							id: 1,
+							id: 0,
 							userId: data.user.id
 						}
 					];
@@ -235,7 +282,7 @@
 				type="text"
 				placeholder="url"
 				bind:value={name}
-				class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
+				class="w-full px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
 				spellcheck="false"
 			/>
 		</label>
@@ -249,7 +296,7 @@
 					type="text"
 					placeholder="url"
 					bind:value={url}
-					class="px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
+					class="w-full px-2 py-1 rounded-lg text-gray-900 border-gray-200 focus:ring-0 focus:border-blue-500 transition-colors"
 					spellcheck="false"
 				/>
 			</p>

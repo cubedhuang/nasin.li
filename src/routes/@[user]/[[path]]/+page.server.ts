@@ -14,15 +14,19 @@ export const load = (async ({ params, parent }) => {
 			name: true,
 			url: true,
 			image: true,
-			nasin: true
+			nasin: {
+				select: {
+					id: true,
+					path: true,
+					name: true
+				}
+			}
 		}
 	});
 
 	if (!user?.nasin?.length) {
 		throw error(404, 'Nasin not found');
 	}
-
-	console.log(user.nasin);
 
 	const exists = user.nasin.find(nasin => nasin.path === (params.path ?? ''));
 
@@ -62,5 +66,16 @@ export const load = (async ({ params, parent }) => {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-	return { user, nasin: nasin!, owner };
+	return {
+		user,
+		nasin: nasin!,
+		owner,
+		meta: {
+			title: user.name,
+			description: `lipu ni li nasin pi ${
+				params.path ? nasin?.name : user.name
+			}!`,
+			image: user.image
+		}
+	};
 }) satisfies PageServerLoad;

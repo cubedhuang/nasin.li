@@ -17,5 +17,11 @@ export const load = (async ({ parent }) => {
 		user.accounts[0].providerAccountId
 	);
 
-	return { discordUser };
+	return {
+		discordUser,
+		meta: {
+			title: 'home – nasin.li',
+			description: 'sina ken lukin e sona sina lon lipu ni'
+		}
+	};
 }) satisfies PageServerLoad;

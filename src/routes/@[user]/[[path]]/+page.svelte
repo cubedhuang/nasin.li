@@ -16,32 +16,14 @@
 		...detail,
 		open: false
 	}));
-
-	$: meta = {
-		title: data.user.name,
-		description: `lipu ni li nasin pi ${pageName}!`,
-		image: data.user.image
-	};
 </script>
-
-<svelte:head>
-	<title>{meta.title}</title>
-	<meta property="og:title" content={meta.title} />
-
-	<meta name="description" content={meta.description} />
-	<meta property="og:description" content={meta.description} />
-
-	{#if meta.image}
-		<meta property="og:image" content={meta.image} />
-	{/if}
-</svelte:head>
 
 <Container>
 	<div class="mt-12 flex items-center justify-between">
 		<div>
 			<h1 class="text-3xl font-bold">{pageName}</h1>
 			<h2 class="text-gray-500">
-				@{data.user.url}{isDefaultPath ? '' : `/${data.nasin.path}`}
+				@{data.user.url}{isDefaultPath ? '' : ` / ${data.nasin.path}`}
 			</h2>
 		</div>
 
@@ -73,14 +55,14 @@
 	{#if data.user.nasin.length > 1 && isDefaultPath}
 		<h2 class="mt-8 text-2xl font-bold">ijo kulupu</h2>
 
-		<div class="mt-4 flex flex-wrap">
+		<div class="mt-4 flex flex-wrap gap-2">
 			{#each data.user.nasin as nasin (nasin.path)}
 				{#if nasin.path !== data.nasin.path}
 					<a
 						href="/@{data.user.url}/{nasin.path}"
 						class="box px-4 py-2 hover:shadow-lg transition"
 					>
-						<h3 class="text-lg font-bold">{nasin.name}</h3>
+						<h3 class="font-bold">{nasin.name}</h3>
 					</a>
 				{/if}
 			{/each}
@@ -92,7 +74,7 @@
 			href="/@{data.user.url}"
 			class="mt-4 inline-block box px-4 py-2 hover:shadow-lg transition"
 		>
-			<h3 class="text-lg font-bold">{data.user.name}</h3>
+			<h3 class="font-bold">{data.user.name}</h3>
 		</a>
 	{/if}
 

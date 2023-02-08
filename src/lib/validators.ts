@@ -49,7 +49,8 @@ export const nasinDataSchema = z.object({
 		.refine(nimi => new Set(nimi.map(n => n.nimi)).size === nimi.length, {
 			message: 'nimi must be unique'
 		}),
-	path: urlSchema.optional()
+	path: z.literal('').or(urlSchema),
+	patch: z.boolean().default(false)
 });
 
 export const userDataSchema = z.object({
