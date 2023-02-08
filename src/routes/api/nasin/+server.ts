@@ -28,20 +28,23 @@ export const POST = (async ({ locals, request }) => {
 		throw error(404, 'User not found');
 	}
 
-	if (
-		data.id !== undefined &&
-		!user.nasin.some(nasin => nasin.id === data.id)
-	) {
-		throw error(403, 'Forbidden');
-	}
+	if (data.id !== undefined) {
+		// A new nasin is being created
+		if (user.nasin.length >= 10) {
+			throw error(403, 'Only 10 nasin can be created per account');
+		}
 
-	if (
-		data.id !== undefined &&
-		user.nasin.some(
-			nasin => nasin.name === data.name && nasin.id !== data.id
-		)
-	) {
-		throw error(409, 'Nasin with that name already exists');
+		if (!user.nasin.some(nasin => nasin.id === data.id)) {
+			throw error(403, 'Forbidden');
+		}
+
+		if (
+			user.nasin.some(
+				nasin => nasin.name === data.name && nasin.id !== data.id
+			)
+		) {
+			throw error(409, 'Nasin with that name already exists');
+		}
 	}
 
 	if (
