@@ -31,7 +31,14 @@ export const load = (async ({ params, parent }) => {
 	const exists = user.nasin.find(nasin => nasin.path === (params.path ?? ''));
 
 	if (!exists) {
-		throw error(404, 'Nasin not found');
+		return {
+			full: false as const,
+			user,
+			meta: {
+				title: `${user.name}`,
+				description: `lipu nasin tan ${user.name}!`
+			}
+		};
 	}
 
 	const nasin = await prisma.nasin.findUnique({
@@ -65,9 +72,10 @@ export const load = (async ({ params, parent }) => {
 		}
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	return {
+		full: true as const,
 		user,
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		nasin: nasin!,
 		owner,
 		meta: {
