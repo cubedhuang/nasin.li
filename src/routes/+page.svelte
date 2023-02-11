@@ -10,7 +10,7 @@
 
 	{#if data.session}
 		<a
-			href="/home"
+			href="/tomo"
 			class="flex items-center gap-2 text-blue-600 hocus:text-blue-400 transition-colors"
 		>
 			{#if data.session.user?.image}
@@ -24,10 +24,10 @@
 		</a>
 	{:else}
 		<a
-			href="/login"
+			href="/open"
 			class="text-blue-600 hocus:text-blue-400 transition-colors"
 		>
-			Log In
+			o open
 		</a>
 	{/if}
 
@@ -43,8 +43,7 @@
 
 	<p class="mt-2">
 		sina wile open la, o tawa
-		<a href="/login" class="text-blue-500 hocus:text-blue-600">lipu open</a
-		>!
+		<a href="/open" class="text-blue-500 hocus:text-blue-600">lipu open</a>!
 	</p>
 
 	<p class="mt-4">
@@ -54,10 +53,10 @@
 
 	<p class="mt-2">
 		To start,
-		<a href="/login" class="text-blue-500 hocus:text-blue-600">log in</a>!
+		<a href="/open" class="text-blue-500 hocus:text-blue-600">log in</a>!
 	</p>
 
-	<h2 class="mt-8 text-2xl font-bold">Some People</h2>
+	<h2 class="mt-8 text-2xl font-bold">ijo mute</h2>
 
 	<div class="mt-4 flex flex-wrap gap-2">
 		{#each data.users as user}

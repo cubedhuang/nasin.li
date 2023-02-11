@@ -35,14 +35,14 @@
 
 	{#if data.owner}
 		<div class="mt-8 p-4 box">
-			<p>This is on your account!</p>
+			<p>sina ken ante e ni!</p>
 
 			<p class="mt-2 flex flex-wrap gap-2">
 				<a
-					href="/home"
+					href="/tomo"
 					class="inline-block px-4 py-2 rounded-lg bg-blue-600 text-white font-bold"
 				>
-					Edit Profile
+					o ante
 				</a>
 			</p>
 		</div>

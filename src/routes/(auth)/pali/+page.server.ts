@@ -2,7 +2,7 @@ import { prisma } from '$lib/db';
 import type { PageServerLoad } from './$types';
 
 const meta = {
-	title: 'create – nasin.li',
+	title: 'pali – nasin.li',
 	description: 'lipu ni la, sina ken pali e lipu nasin!'
 };
 

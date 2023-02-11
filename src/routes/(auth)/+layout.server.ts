@@ -7,7 +7,7 @@ export const load = (async ({ parent }) => {
 	const { session } = await parent();
 
 	if (!session?.user?.email) {
-		throw redirect(302, '/login');
+		throw redirect(302, '/open');
 	}
 
 	const user = await prisma.user.findUnique({
@@ -21,7 +21,7 @@ export const load = (async ({ parent }) => {
 	});
 
 	if (!user) {
-		throw redirect(302, '/login');
+		throw redirect(302, '/open');
 	}
 
 	return { user };

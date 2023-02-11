@@ -118,7 +118,7 @@
 
 		if (error) return;
 
-		goto(data.user.url ? `/@${data.user.url}/${nasinPath}` : '/home');
+		goto(data.user.url ? `/@${data.user.url}/${nasinPath}` : '/tomo');
 	}
 </script>
 
@@ -211,10 +211,10 @@
 				rounded-lg bg-gradient-to-br from-blue-600 to-blue-700"
 		>
 			<a
-				href={data.nasin?.length ? '/home' : '/'}
+				href={data.nasin?.length ? '/tomo' : '/'}
 				class="text-white font-bold"
 			>
-				Cancel
+				wile ala
 			</a>
 
 			<button
@@ -224,7 +224,7 @@
 				disabled={saved}
 				on:click={save}
 			>
-				Save
+				pona
 			</button>
 		</p>
 
@@ -410,7 +410,8 @@
 			</span>
 		</h2>
 
-		<p class="mt-2">Click and drag nimi to reorder them.</p>
+		<p class="mt-2">sina ken tawa e nimi ni kepeken ilo tawa.</p>
+		<p class="text-gray-500">Click and drag nimi to reorder them.</p>
 
 		<button
 			type="button"

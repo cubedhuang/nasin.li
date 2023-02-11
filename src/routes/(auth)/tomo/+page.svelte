@@ -139,16 +139,16 @@
 </script>
 
 <Container>
-	<h1 class="mt-12 text-3xl font-bold">Home</h1>
+	<h1 class="mt-12 text-3xl font-bold">tomo</h1>
 
-	<h2 class="mt-8 text-2xl font-bold">My Nasin</h2>
+	<h2 class="mt-8 text-2xl font-bold">nasin mi</h2>
 
 	<p class="mt-4 flex flex-wrap gap-2">
 		<a
-			href="/create"
+			href="/pali"
 			class="inline-block px-4 py-2 rounded-lg bg-blue-600 text-white font-bold"
 		>
-			Edit my Nasin
+			o ante
 		</a>
 
 		{#if data.user.url}
@@ -156,7 +156,7 @@
 				href={`/@${data.user.url}`}
 				class="px-4 py-2 flex items-center gap-2 rounded-lg bg-blue-600 text-white font-bold"
 			>
-				View
+				lukin
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"
@@ -189,7 +189,7 @@
 			<li>
 				<div class="p-4 box">
 					<label>
-						<h3 class="font-bold">Nasin Name</h3>
+						<h3 class="font-bold">nimi pi nasin ni</h3>
 
 						<input
 							type="text"
@@ -201,7 +201,7 @@
 					</label>
 
 					<label>
-						<h3 class="font-bold mt-4">URL</h3>
+						<h3 class="font-bold mt-4">ma</h3>
 
 						<p class="flex items-baseline">
 							https://nasin.li/@{url}/
@@ -223,7 +223,7 @@
 							disabled={savedNasin}
 							on:click={() => saveNasin(nasin)}
 						>
-							Save
+							pona
 						</button>
 
 						<button
@@ -232,7 +232,7 @@
 							disabled={savedNasin}
 							on:click={() => deleteNasin(nasin)}
 						>
-							Delete
+							o weka
 						</button>
 					</div>
 				</div>
@@ -272,11 +272,11 @@
 		</li>
 	</ul>
 
-	<h2 class="mt-8 text-2xl font-bold">Account Settings</h2>
+	<h2 class="mt-8 text-2xl font-bold">poki</h2>
 
 	<div class="mt-4 p-4 box w-fit">
 		<label>
-			<h3 class="font-bold">Account Name</h3>
+			<h3 class="font-bold">nimi pi poki sina</h3>
 
 			<input
 				type="text"
@@ -288,7 +288,7 @@
 		</label>
 
 		<label>
-			<h3 class="font-bold mt-4">URL</h3>
+			<h3 class="font-bold mt-4">ma</h3>
 
 			<p class="flex items-baseline">
 				https://nasin.li/@
@@ -314,10 +314,10 @@
 		disabled={savedUser}
 		on:click={saveUser}
 	>
-		Save
+		pona
 	</button>
 
-	<h1 class="mt-8 text-2xl font-bold">Linked Account</h1>
+	<h1 class="mt-8 text-2xl font-bold">ijo tan</h1>
 
 	<div
 		class="mt-2 p-4 max-w-md flex items-center rounded-lg bg-[#2f3136] text-white"
@@ -361,6 +361,6 @@
 			/>
 		</svg>
 
-		Sign Out
+		mi weka
 	</button>
 </Container>

@@ -10,7 +10,7 @@ export const load = (async ({ parent }) => {
 	const { user } = await parent();
 
 	if (!user.nasin?.length) {
-		throw redirect(302, '/create');
+		throw redirect(302, '/pali');
 	}
 
 	const discordUser = await client.user.getUser(
@@ -20,7 +20,7 @@ export const load = (async ({ parent }) => {
 	return {
 		discordUser,
 		meta: {
-			title: 'home – nasin.li',
+			title: 'tomo – nasin.li',
 			description: 'sina ken lukin e sona sina lon lipu ni'
 		}
 	};
