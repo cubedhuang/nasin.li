@@ -48,28 +48,30 @@
 		</div>
 	{/if}
 
-	<h2 class="mt-8 text-2xl font-bold">kulupu</h2>
+	{#if data.user.nasin.length > 1}
+		<h2 class="mt-8 text-2xl font-bold">kulupu</h2>
 
-	{#if data.user.nasin.length > 1 && isDefaultPath}
-		<div class="mt-4 flex flex-wrap gap-2">
-			{#each data.user.nasin as nasin (nasin.path)}
-				{#if nasin.path !== data.nasin?.path}
-					<a
-						href="/@{data.user.url}/{nasin.path}"
-						class="box px-4 py-2 hover:shadow-lg transition"
-					>
-						<h3 class="font-bold">{nasin.name}</h3>
-					</a>
-				{/if}
-			{/each}
-		</div>
-	{:else if data.user.nasin.length > 1}
-		<a
-			href="/@{data.user.url}"
-			class="mt-4 inline-block box px-4 py-2 hover:shadow-lg transition"
-		>
-			<h3 class="font-bold">{data.user.name}</h3>
-		</a>
+		{#if isDefaultPath}
+			<div class="mt-4 flex flex-wrap gap-2">
+				{#each data.user.nasin as nasin (nasin.path)}
+					{#if nasin.path !== data.nasin?.path}
+						<a
+							href="/@{data.user.url}/{nasin.path}"
+							class="box px-4 py-2 hover:shadow-lg transition"
+						>
+							<h3 class="font-bold">{nasin.name}</h3>
+						</a>
+					{/if}
+				{/each}
+			</div>
+		{:else}
+			<a
+				href="/@{data.user.url}"
+				class="mt-4 inline-block box px-4 py-2 hover:shadow-lg transition"
+			>
+				<h3 class="font-bold">{data.user.name}</h3>
+			</a>
+		{/if}
 	{/if}
 
 	{#if data.full}
