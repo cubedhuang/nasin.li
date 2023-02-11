@@ -13,6 +13,7 @@
 	} from '$lib/validators';
 
 	import Container from '$lib/components/Container.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 
 	export let data: PageData;
 
@@ -137,6 +138,11 @@
 		goto(`@${userData.url}`);
 	}
 </script>
+
+<Meta
+	title="tomo – nasin.li"
+	description="sina ken lukin e sona sina lon lipu ni"
+/>
 
 <Container>
 	<h1 class="mt-12 text-3xl font-bold">tomo</h1>

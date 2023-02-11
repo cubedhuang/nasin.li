@@ -1,9 +1,15 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
+
+<Meta
+	title="nasin.li"
+	description="lipu ni la, sina ken lukin e lipu nasin pi jan ante, li ken pali e lipu pi nasin sina!"
+/>
 
 <Container>
 	<h1 class="mt-12 text-3xl font-bold">nasin.li</h1>

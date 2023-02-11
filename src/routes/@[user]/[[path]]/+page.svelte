@@ -3,14 +3,27 @@
 
 	import Container from '$lib/components/Container.svelte';
 	import NasinDisplay from './NasinDisplay.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 
 	export let data: PageData;
 
 	$: isDefaultPath = !data.full || data.nasin.path === '';
 
 	$: pageName =
-		isDefaultPath || !data.full ? data.user.name : data.nasin.name;
+		isDefaultPath || !data.full
+			? data.user.name ?? 'lipu nasin'
+			: data.nasin.name;
 </script>
+
+{#if data.full}
+	<Meta
+		title={pageName}
+		description="lipu ni li nasin pi {pageName}!"
+		image={data.user.image ?? undefined}
+	/>
+{:else}
+	<Meta title={pageName} description="lipu nasin tan {data.user.name}!" />
+{/if}
 
 <Container>
 	<div class="mt-12 flex items-center justify-between">

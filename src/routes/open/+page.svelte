@@ -1,8 +1,14 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 	import { signIn } from '@auth/sveltekit/client';
 	import Discord from './Discord.svelte';
 </script>
+
+<Meta
+	title="open – nasin.li"
+	description="lipu ni la, sina ken open pali e lipu nasin."
+/>
 
 <Container>
 	<h1 class="mt-12 text-3xl font-bold">o open</h1>

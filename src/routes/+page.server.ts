@@ -15,12 +15,5 @@ export const load = (async () => {
 		}
 	});
 
-	return {
-		users,
-		meta: {
-			title: 'nasin.li',
-			description:
-				'lipu ni la, sina ken lukin e lipu nasin pi jan ante, li ken pali e lipu pi nasin sina!'
-		}
-	};
+	return { users };
 }) satisfies PageServerLoad;

@@ -33,11 +33,7 @@ export const load = (async ({ params, parent }) => {
 	if (!exists) {
 		return {
 			full: false as const,
-			user,
-			meta: {
-				title: `${user.name}`,
-				description: `lipu nasin tan ${user.name}!`
-			}
+			user
 		};
 	}
 
@@ -77,13 +73,6 @@ export const load = (async ({ params, parent }) => {
 		user,
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		nasin: nasin!,
-		owner,
-		meta: {
-			title: user.name,
-			description: `lipu ni li nasin pi ${
-				params.path ? nasin?.name : user.name
-			}!`,
-			image: user.image
-		}
+		owner
 	};
 }) satisfies PageServerLoad;
